@@ -34,7 +34,14 @@ class MoviesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {    $this->validate($request,
+        [
+            'title' => 'required|unique:movies,title',
+            'director' => 'required',
+            'imageUrl' => 'required|url',
+            'duration' => 'required|min:1|max:5000',
+            'releaseDate' => 'required|unique:movies,releaseDate'
+        ]);
         \Log::info(print_r($request->all(),true));
         return Movie::create($request->all());
     }
@@ -70,6 +77,14 @@ class MoviesController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
+        $this->validate($request,
+        [
+            'title' => 'required|unique:movies,title',
+            'director' => 'required',
+            'imageUrl' => 'required|url',
+            'duration' => 'required|min:1|max:5000',
+            'releaseDate' => 'required|unique:movies,releaseDate'
+        ]);
         $movie->update($request->all());
         return $movie;
     }
