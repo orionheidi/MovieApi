@@ -11,4 +11,14 @@ class Movie extends Model
     protected $fillable = [
         'title', 'director', 'imageUrl','duration','releaseDate','genere'
     ];
+
+    public static function search($query, $title)
+    {
+        if (!empty($title)) {
+            return $query->where('title', 'like', '%'.$title.'%');
+        }
+
+        return $query;
+    }
+    
 }

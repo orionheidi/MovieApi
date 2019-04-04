@@ -12,9 +12,12 @@ class MoviesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request,Movie $movie)
     {
-        return Movie::all();
+        // Search for a user based on their name.
+    
+        $movies = Movie::search(Movie::query(), $request->input('title'))->get();
+        return $movies;
     }
 
     /**
