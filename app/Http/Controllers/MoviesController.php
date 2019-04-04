@@ -11,12 +11,20 @@ class MoviesController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     *
      */
+    // public function index()
+    // {
+    //     // Search for a user based on their name.
+    
+    //     return Movie::all();
+    // }
     public function index(Request $request,Movie $movie)
     {
         // Search for a user based on their name.
-    
-        $movies = Movie::search(Movie::query(), $request->input('title'))->get();
+        $take = 10;
+        $skip = 5;
+        $movies = Movie::search(Movie::query(), $request->input('title'))->take(10)->skip($skip)->orderBy('id','desc')->get();
         return $movies;
     }
 
