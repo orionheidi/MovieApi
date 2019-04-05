@@ -49,7 +49,7 @@ class MoviesController extends Controller
         [
             'title' => 'required|unique:movies,title',
             'director' => 'required',
-            'imageUrl' => 'required|url',
+            'imageUrl' => 'url',
             'duration' => 'required|min:1|max:5000',
             'releaseDate' => 'required|unique:movies,releaseDate'
         ]);
@@ -92,7 +92,7 @@ class MoviesController extends Controller
         [
             'title' => 'required|unique:movies,title',
             'director' => 'required',
-            'imageUrl' => 'required|url',
+            'imageUrl' => 'url',
             'duration' => 'required|min:1|max:5000',
             'releaseDate' => 'required|unique:movies,releaseDate'
         ]);
